@@ -1,16 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 
-<?import javafx.scene.control.Button?>
-<VBox alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml"
-      fx:controller="app.weatherwise.Controller">
+<VBox alignment="CENTER" prefHeight="401.0" prefWidth="392.0" spacing="20.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.weatherwise.Controller">
     <padding>
-        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
     </padding>
+   <Label fx:id="latitudeText" layoutX="87.0" layoutY="181.0" prefHeight="31.0" prefWidth="113.0" text="Input Latitude Below" textAlignment="CENTER" />
+    <TextField fx:id="latitudeInput" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="212.0" />
+   <Label fx:id="longitudeText" layoutX="128.0" layoutY="63.0" prefHeight="31.0" prefWidth="125.0" text="Input Longitude Below" textAlignment="CENTER" />
+    <TextField fx:id="longitudeInput" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="212.0" />
 
-    <Label fx:id="welcomeText"/>
-    <Button text="Hello!" onAction="#onHelloButtonClick"/>
+    <Label fx:id="output" prefHeight="105.0" prefWidth="238.0" wrapText="true" />
+    <Button onAction="#onGetDataClick" text="Get Data" />
 </VBox>
