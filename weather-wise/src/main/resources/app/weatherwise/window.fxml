@@ -3,16 +3,35 @@
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<VBox alignment="CENTER" prefHeight="401.0" prefWidth="392.0" spacing="20.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.weatherwise.Controller">
+<Pane prefHeight="401.0" prefWidth="392.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.weatherwise.Controller">
     <padding>
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
     </padding>
-   <Label fx:id="latitudeText" layoutX="87.0" layoutY="181.0" prefHeight="31.0" prefWidth="113.0" text="Input Latitude Below" textAlignment="CENTER" />
-    <TextField fx:id="latitudeInput" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="212.0" />
-   <Label fx:id="longitudeText" layoutX="128.0" layoutY="63.0" prefHeight="31.0" prefWidth="125.0" text="Input Longitude Below" textAlignment="CENTER" />
-    <TextField fx:id="longitudeInput" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="212.0" />
+   <Label layoutX="44.0" layoutY="69.0" prefHeight="31.0" prefWidth="108.0" text="Latitude:" textAlignment="CENTER">
+      <font>
+         <Font size="19.0" />
+      </font></Label>
+    <TextField fx:id="latitudeInput" layoutX="44.0" layoutY="100.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="88.0" />
+   <Label layoutX="44.0" layoutY="135.0" prefHeight="31.0" prefWidth="115.0" text="Longitude: " textAlignment="CENTER">
+      <font>
+         <Font size="19.0" />
+      </font></Label>
+    <TextField fx:id="longitudeInput" layoutX="44.0" layoutY="166.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="88.0" />
 
-    <Label fx:id="output" prefHeight="105.0" prefWidth="238.0" wrapText="true" />
-    <Button onAction="#onGetDataClick" text="Get Data" />
-</VBox>
+    <Label fx:id="output" layoutX="77.0" layoutY="200.0" prefHeight="105.0" prefWidth="238.0" wrapText="true">
+      <font>
+         <Font size="15.0" />
+      </font></Label>
+    <Button layoutX="157.0" layoutY="312.0" onAction="#onGetDataClick" text="Get Data">
+      <font>
+         <Font size="15.0" />
+      </font></Button>
+   <Label layoutX="218.0" layoutY="135.0" prefHeight="31.0" prefWidth="63.0" text="City:">
+      <font>
+         <Font size="19.0" />
+      </font></Label>
+   <TextField fx:id="cityInput" layoutX="218.0" layoutY="166.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="88.0" />
+   <ChoiceBox fx:id="textInputBox" layoutX="21.0" layoutY="25.0" prefHeight="25.0" prefWidth="134.0" />
+</Pane>

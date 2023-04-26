@@ -35,8 +35,14 @@ public class Util {
     }
 
     // returns a String with all illegal characters (that is not: a number from 0-9, a "-", or a ".") removed
-    public static String removeIllegalCharacters(String input){
-        String pattern = "[^0-9\\-.]";
-        return input.replaceAll(pattern, "");
+    public static String formatDouble(String input){
+        return input.replaceAll("[^0-9\\-.]", "");
+    }
+
+    // returns a String with all spaces replaced by %20 (url encoding for empty space)
+    public static String formatCity(String input){
+        input = input.replaceAll("\\s+", "%20");
+        input = input.replaceAll("[^a-zA-Z%20]+", "");
+        return input;
     }
 }
