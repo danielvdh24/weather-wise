@@ -42,6 +42,8 @@ public class Controller {
             double rawTemp = ((Double) mainObject.get("temp")); // get temperature from main field
             JSONObject sysObject = (JSONObject) weatherData.get("sys");
             String country = (String) sysObject.get("country"); // get country from sys field
+            mainObject = (JSONObject) weatherData.get("wind");
+            double windSpeed = ((Double) mainObject.get("speed")); // get temperature from wind field
 
             country = Util.formatCC(country); // convert country code to country name
             String temp = Util.formatTemp(rawTemp); // convert Kelvin to Celsius
@@ -53,7 +55,11 @@ public class Controller {
                 cityName = noData;
             }
 
-            output.setText("Country: " + country + "\nCity: " + cityName + "\nForecast: " + description + "\nTemperature: " + temp);
+            output.setText("Country: " + country + "\n"
+                    + "City: " + cityName + "\n"
+                    + "Forecast: " + description + "\n"
+                    + "Temperature: " + temp + "\n"
+                    + "Wind Speed: " + windSpeed + " m/s");
         } catch(Exception e){
             output.setText("Unable to retrieve weather data for the specified location. Please try again or check your input.");
         }
