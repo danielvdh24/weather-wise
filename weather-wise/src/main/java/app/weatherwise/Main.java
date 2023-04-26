@@ -14,6 +14,7 @@ public class Main extends Application {
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("window.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 380, 350);
         stage.setTitle("Weather Wise");
+        stage.setResizable(false);
         stage.setScene(scene);
         stage.show();
     }
