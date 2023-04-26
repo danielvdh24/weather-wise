@@ -4,6 +4,7 @@ package app.weatherwise;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 
 // import toolkits to establish HTTP connections and retrieve data from URLs
 import java.net.HttpURLConnection;
@@ -15,7 +16,17 @@ import java.io.IOException;
 
 public class APIService {
 
+    private static APIService instance;
+
     public APIService() {
+    }
+
+    // returns the single instance of the APIService class, creating one if none exists
+    public static APIService getInstance() {
+        if (instance == null) {
+            instance = new APIService();
+        }
+        return instance;
     }
 
     // creates an HTTP request to specified query and returns response as a String
@@ -42,28 +53,16 @@ public class APIService {
     }
 
     // parse the response and returns as an equivalent JSONObject object
-    public JSONObject getJSONObject(String url) {
-        try {
-            String weatherInfo = makeHttpRequest(url);
-            JSONParser parse = new JSONParser();
-            return (JSONObject) parse.parse(weatherInfo);
-        } catch (Exception e) {
-            System.err.println("Unknown error occurred: " + e.getMessage());
-            e.printStackTrace();
-        }
-        return null;
+    public JSONObject getJSONObject(String url) throws IOException, ParseException {
+        String weatherInfo = makeHttpRequest(url);
+        JSONParser parse = new JSONParser();
+        return (JSONObject) parse.parse(weatherInfo);
     }
 
     // parse the response and returns as an equivalent JSONArray object
-    public JSONArray getJSONArray(String url){
-        try {
-            String weatherInfo = makeHttpRequest(url);
-            JSONParser parse = new JSONParser();
-            return (JSONArray) parse.parse(weatherInfo);
-        } catch (Exception e) {
-            System.err.println("Unknown error occurred: " + e.getMessage());
-            e.printStackTrace();
-        }
-        return null;
+    public JSONArray getJSONArray(String url) throws IOException, ParseException {
+        String weatherInfo = makeHttpRequest(url);
+        JSONParser parse = new JSONParser();
+        return (JSONArray) parse.parse(weatherInfo);
     }
 }
