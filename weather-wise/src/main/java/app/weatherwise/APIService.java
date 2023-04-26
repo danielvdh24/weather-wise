@@ -15,15 +15,12 @@ import java.io.IOException;
 
 public class APIService {
 
-    private final String apiUrl;
-
-    public APIService(String url) {
-        this.apiUrl = url;
+    public APIService() {
     }
 
     // creates an HTTP request to specified query and returns response as a String
-    private String makeHttpRequest() throws IOException {
-        URL url = new URL(apiUrl);
+    private String makeHttpRequest(String inputUrl) throws IOException {
+        URL url = new URL(inputUrl);
         HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection(); // open a connection to the url using HTTP
         urlConnection.setRequestMethod("GET"); // set request method to GET (to retrieve data)
         urlConnection.connect(); // establish connection to url
@@ -45,9 +42,9 @@ public class APIService {
     }
 
     // parse the response and returns as an equivalent JSONObject object
-    public JSONObject getJSONObject() {
+    public JSONObject getJSONObject(String url) {
         try {
-            String weatherInfo = makeHttpRequest();
+            String weatherInfo = makeHttpRequest(url);
             JSONParser parse = new JSONParser();
             return (JSONObject) parse.parse(weatherInfo);
         } catch (Exception e) {
@@ -58,11 +55,11 @@ public class APIService {
     }
 
     // parse the response and returns as an equivalent JSONArray object
-    public JSONArray getJSONArray(){
+    public JSONArray getJSONArray(String url){
         try {
-            String informationString = makeHttpRequest();
+            String weatherInfo = makeHttpRequest(url);
             JSONParser parse = new JSONParser();
-            return (JSONArray) parse.parse(informationString);
+            return (JSONArray) parse.parse(weatherInfo);
         } catch (Exception e) {
             System.err.println("Unknown error occurred: " + e.getMessage());
             e.printStackTrace();

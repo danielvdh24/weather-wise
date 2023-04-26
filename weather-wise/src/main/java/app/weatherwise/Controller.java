@@ -29,8 +29,9 @@ public class Controller {
 
     @FXML
     protected void onGetDataClick() {
-        APIService service = new APIService(weatherAPI + latParam + latitudeInput.getText() + and + lonParam + longitudeInput.getText() + and + keyParam + apiKey);
-        JSONObject weatherData = service.getJSONObject();
+        APIService service = new APIService();
+        String url = weatherAPI + latParam + latitudeInput.getText() + and + lonParam + longitudeInput.getText() + and + keyParam + apiKey;
+        JSONObject weatherData = service.getJSONObject(url);
         output.setText(weatherData.toJSONString());
     }
 }
