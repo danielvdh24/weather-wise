@@ -39,10 +39,9 @@ public class Util {
         return input.replaceAll("[^0-9\\-.]", "");
     }
 
-    // returns a String with all spaces replaced by %20 (url encoding for empty space)
+    // returns a String with all spaces replaced by %20 (url encoding for empty space) and illegal characters (that is not: a letter) removed
     public static String formatCity(String input){
-        input = input.replaceAll("\\s+", "%20");
-        input = input.replaceAll("[^a-zA-Z%20]+", "");
-        return input;
+        input = input.trim().replaceAll("[^a-zA-Z ]+", "");
+        return input.replaceAll(" ", "%20");
     }
 }
