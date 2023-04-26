@@ -33,4 +33,10 @@ public class Util {
         }
         return output.toString().trim();
     }
+
+    // returns a String with all illegal characters (that is not: a number from 0-9, a "-", or a ".") removed
+    public static String removeIllegalCharacters(String input){
+        String pattern = "[^0-9\\-.]";
+        return input.replaceAll(pattern, "");
+    }
 }

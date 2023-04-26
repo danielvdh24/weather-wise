@@ -13,7 +13,7 @@ public class Controller {
     private final String lonParam = "lon="; // parameter to specify longitude
     private final String keyParam = "appid="; // parameter to specify API key
     private final String and = "&"; // syntax for adding parameters
-    private final String noData = "not found!"; // null replacement
+    private final String noData = "NOT FOUND!"; // null replacement
 
     private final String apiKey = "3d3d6e9a8b385dea9f19a7323938d980"; // API key to authenticate call
 
@@ -31,29 +31,30 @@ public class Controller {
     @FXML
     protected void onGetDataClick() {
         APIService service = APIService.getInstance(); // create or get the APIService instance
-        String url = weatherAPI + latParam + latitudeInput.getText() + and + lonParam + longitudeInput.getText() + and + keyParam + apiKey; // construct URL with input
+        String latitude = Util.removeIllegalCharacters(latitudeInput.getText());
+        String longitude = Util.removeIllegalCharacters(longitudeInput.getText());
+        String url = weatherAPI + latParam + latitude + and + lonParam + longitude + and + keyParam + apiKey; // construct URL with input
         try {
             JSONObject weatherData = service.getJSONObject(url);
             String cityName = (String) weatherData.get("name"); // get city name
+            if(cityName.isEmpty() || cityName.isBlank()) cityName = noData;
+
             JSONArray weatherArray = (JSONArray) weatherData.get("weather");
             JSONObject weatherObject = (JSONObject) weatherArray.get(0);
-            String description = (String) weatherObject.get("description"); // get description from weather field
+            String description = weatherObject.get("description") == null ? noData : (String) weatherObject.get("description"); // get description from weather field
+
             JSONObject mainObject = (JSONObject) weatherData.get("main");
-            double rawTemp = ((Double) mainObject.get("temp")); // get temperature from main field
+            double rawTemp = mainObject.get("temp") == null ? 404 : ((Double) mainObject.get("temp")); // get temperature from main field
+
             JSONObject sysObject = (JSONObject) weatherData.get("sys");
-            String country = (String) sysObject.get("country"); // get country from sys field
+            String country = sysObject.get("country") == null ? noData : (String) sysObject.get("country"); // get country from sys field
+
             mainObject = (JSONObject) weatherData.get("wind");
-            double windSpeed = ((Double) mainObject.get("speed")); // get temperature from wind field
+            double windSpeed = mainObject.get("speed") == null ? 404 : (Double) mainObject.get("speed"); // get wind speed from wind field
 
             country = Util.formatCC(country); // convert country code to country name
             String temp = Util.formatTemp(rawTemp); // convert Kelvin to Celsius
             description = Util.formatDesc(description); // capitalize first letter of each word
-            if(cityName.isBlank() || cityName.isEmpty()){
-                cityName = noData;
-            }
-            if(country.isBlank() || country.isEmpty()){
-                cityName = noData;
-            }
 
             output.setText("Country: " + country + "\n"
                     + "City: " + cityName + "\n"
