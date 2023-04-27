@@ -1,9 +1,7 @@
 package app.weatherwise;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
@@ -16,40 +14,84 @@ public class Controller {
     private final String query = "q="; // parameter to specify city name
     private final String and = "&"; // syntax for adding parameters
     private final String noData = "NOT FOUND!"; // null replacement
-    private final double noDouble = 404;
+    private final double noDouble = 404; // null replacement
 
     private final String apiKey = "3d3d6e9a8b385dea9f19a7323938d980"; // API key to authenticate call
+    private APIService service; // instantiate APIService object
 
+    @FXML
+    private RadioButton selectCity, selectGeolocation;
+    @FXML
+    private Label latitudeText, longitudeText, cityText, output;
     @FXML
     private TextField latitudeInput, longitudeInput, cityInput;
     @FXML
-    private Label output;
-    @FXML
-    private ChoiceBox<String> textInputBox;
-    @FXML
-    private final String[] textInputTypes = {"Geolocation", "City"};
+    private Button button;
 
     @FXML
-    public void initialize() {
-        textInputBox.getItems().addAll(textInputTypes);
-        textInputBox.setValue(textInputTypes[0]);
+    private void initialize() {
+        service = APIService.getInstance(); // create or get the APIService instance
+        selectCity.setSelected(true);
+        latitudeText.setVisible(false);
+        longitudeText.setVisible(false);
+        latitudeInput.setVisible(false);
+        longitudeInput.setVisible(false);
+        button.setDefaultButton(true);
+    }
+
+    public void switchInputMode(){
+        if(selectCity.isSelected()){
+            output.setText("");
+            cityText.setVisible(true);
+            cityInput.setVisible(true);
+            latitudeText.setVisible(false);
+            longitudeText.setVisible(false);
+            latitudeInput.setVisible(false);
+            longitudeInput.setVisible(false);
+        } else {
+            output.setText("");
+            cityText.setVisible(false);
+            cityInput.setVisible(false);
+            latitudeText.setVisible(true);
+            longitudeText.setVisible(true);
+            latitudeInput.setVisible(true);
+            longitudeInput.setVisible(true);
+        }
     }
 
     @FXML
-    protected void onGetDataClick() {
-        APIService service = APIService.getInstance(); // create or get the APIService instance
-        String inputType = textInputBox.getValue();
+    protected void onButtonClick() {
         String url = weatherAPI;
 
-        if(inputType.equals("Geolocation")){
-            String latitude = Util.formatDouble(latitudeInput.getText());
-            String longitude = Util.formatDouble(longitudeInput.getText());
-            url = url + latParam + latitude + and + lonParam + longitude + and + keyParam + apiKey; // construct URL with geolocation input
-            // weatherAPI + lat={lat}&lon={lon}&appid={API key}
-        } else {
+        if(selectCity.isSelected()){
             String city = Util.formatCity(cityInput.getText());
+            if(city.equals("")){
+                output.setText("Please enter your city name!");
+                return;
+            }
             url = url + query + city + and + keyParam + apiKey; // construct URL with city input
             // weatherAPI + q={city name}&appid={API key}
+        }
+
+        if(selectGeolocation.isSelected()){
+            String latitude = Util.formatDouble(latitudeInput.getText());
+            String longitude = Util.formatDouble(longitudeInput.getText());
+            if(latitude.equals("") || longitude.equals("")){
+                output.setText("Please enter your coordinates!");
+                return;
+            }
+            if(Double.parseDouble(latitude) > 90 || Double.parseDouble(latitude) < -90){
+                output.setText("Latitude value is invalid!" + "\n"
+                        + "Please enter a value between -90 and 90");
+                return;
+            }
+            if(Double.parseDouble(longitude) > 180 || Double.parseDouble(longitude) < -180){
+                output.setText("Longitude value is invalid!" + "\n"
+                        + "Please enter a value between -180 and 180");
+                return;
+            }
+            url = url + latParam + latitude + and + lonParam + longitude + and + keyParam + apiKey; // construct URL with geolocation input
+            // weatherAPI + lat={lat}&lon={lon}&appid={API key}
         }
 
         try {
@@ -75,7 +117,7 @@ public class Controller {
             String temp = Util.formatTemp(rawTemp); // convert Kelvin to Celsius
             description = Util.formatDesc(description); // capitalize first letter of each word
 
-            if(inputType.equals("Geolocation")){
+            if(selectGeolocation.isSelected()){
                 output.setText("Country: " + country + "\n"
                         + "City: " + cityName + "\n"
                         + "Forecast: " + description + "\n"

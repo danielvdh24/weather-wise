@@ -2,36 +2,57 @@
 
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<Pane prefHeight="401.0" prefWidth="392.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.weatherwise.Controller">
+<Pane prefHeight="350.0" prefWidth="380.0" style="-fx-background-color: #54A3FF;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.weatherwise.Controller">
     <padding>
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
     </padding>
-   <Label layoutX="44.0" layoutY="69.0" prefHeight="31.0" prefWidth="108.0" text="Latitude:" textAlignment="CENTER">
+    <ImageView fitHeight="42.0" fitWidth="380.0" pickOnBounds="true">
+        <Image url="@images/banner.png" />
+    </ImageView>
+    <ImageView fitHeight="126.0" fitWidth="318.0" layoutX="31.0" layoutY="167.0" pickOnBounds="true">
+        <Image url="@images/outputbox.png" />
+    </ImageView>
+   <ImageView fitHeight="31.0" fitWidth="88.0" layoutX="302.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
+    <Image url="@images/openweatherapi.png" />
+   </ImageView>
+   <RadioButton fx:id="selectCity" focusTraversable="false" layoutX="15.0" layoutY="8.0" mnemonicParsing="false" onAction="#switchInputMode" prefHeight="25.0" prefWidth="63.0" text="City">
       <font>
-         <Font size="19.0" />
-      </font></Label>
-    <TextField fx:id="latitudeInput" layoutX="44.0" layoutY="100.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="88.0" />
-   <Label layoutX="44.0" layoutY="135.0" prefHeight="31.0" prefWidth="115.0" text="Longitude: " textAlignment="CENTER">
+         <Font name="Eras Demi ITC" size="14.0" />
+      </font>
+      <toggleGroup>
+         <ToggleGroup fx:id="searchType" />
+      </toggleGroup>
+   </RadioButton>
+   <RadioButton fx:id="selectGeolocation" focusTraversable="false" layoutX="88.0" layoutY="8.0" mnemonicParsing="false" onAction="#switchInputMode" prefHeight="25.0" prefWidth="126.0" text="Geolocation" toggleGroup="$searchType">
       <font>
-         <Font size="19.0" />
+         <Font name="Eras Demi ITC" size="14.0" />
+      </font>
+   </RadioButton>
+   <Label fx:id="cityText" alignment="CENTER" layoutX="173.0" layoutY="70.0" prefHeight="31.0" prefWidth="42.0" text="City" textFill="WHITE">
+      <font>
+         <Font name="Eras Bold ITC" size="19.0" />
       </font></Label>
-    <TextField fx:id="longitudeInput" layoutX="44.0" layoutY="166.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="88.0" />
-
-    <Label fx:id="output" layoutX="77.0" layoutY="200.0" prefHeight="105.0" prefWidth="238.0" wrapText="true">
+   <Label fx:id="latitudeText" alignment="CENTER" layoutX="153.0" layoutY="42.0" prefHeight="31.0" prefWidth="88.0" text="Latitude" textAlignment="CENTER" textFill="WHITE">
+      <font>
+         <Font name="Eras Bold ITC" size="19.0" />
+      </font></Label>
+   <Label fx:id="longitudeText" alignment="CENTER" layoutX="145.0" layoutY="100.0" prefHeight="31.0" prefWidth="106.0" text="Longitude " textAlignment="CENTER" textFill="WHITE">
+      <font>
+         <Font name="Eras Bold ITC" size="19.0" />
+      </font></Label>
+    <TextField fx:id="cityInput" alignment="CENTER" focusTraversable="false" layoutX="141.0" layoutY="102.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="108.0" promptText="e.g. Gothenburg" />
+    <TextField fx:id="latitudeInput" alignment="CENTER" focusTraversable="false" layoutX="148.0" layoutY="73.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="98.0" promptText="-90 to 90" />
+    <TextField fx:id="longitudeInput" alignment="CENTER" focusTraversable="false" layoutX="148.0" layoutY="130.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="98.0" promptText="-180 to 180" />
+    <Label fx:id="output" alignment="CENTER" layoutX="31.0" layoutY="167.0" prefHeight="126.0" prefWidth="318.0" textAlignment="CENTER" wrapText="true">
       <font>
          <Font size="15.0" />
       </font></Label>
-    <Button layoutX="157.0" layoutY="312.0" onAction="#onGetDataClick" text="Get Data">
+    <Button fx:id="button" layoutX="144.0" layoutY="308.0" onAction="#onButtonClick" text="Get Weather">
       <font>
-         <Font size="15.0" />
+         <Font name="Eras Medium ITC" size="15.0" />
       </font></Button>
-   <Label layoutX="218.0" layoutY="135.0" prefHeight="31.0" prefWidth="63.0" text="City:">
-      <font>
-         <Font size="19.0" />
-      </font></Label>
-   <TextField fx:id="cityInput" layoutX="218.0" layoutY="166.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="88.0" />
-   <ChoiceBox fx:id="textInputBox" layoutX="21.0" layoutY="25.0" prefHeight="25.0" prefWidth="134.0" />
 </Pane>
