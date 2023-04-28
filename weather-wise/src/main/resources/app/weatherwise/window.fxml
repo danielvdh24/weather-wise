@@ -32,27 +32,28 @@
          <Font name="Eras Demi ITC" size="14.0" />
       </font>
    </RadioButton>
-   <Label fx:id="cityText" alignment="CENTER" layoutX="173.0" layoutY="70.0" prefHeight="31.0" prefWidth="42.0" text="City" textFill="WHITE">
+   <Label fx:id="cityText" alignment="CENTER" layoutX="174.0" layoutY="75.0" prefHeight="31.0" prefWidth="42.0" text="City" textFill="WHITE">
       <font>
          <Font name="Eras Bold ITC" size="19.0" />
       </font></Label>
-   <Label fx:id="latitudeText" alignment="CENTER" layoutX="153.0" layoutY="42.0" prefHeight="31.0" prefWidth="88.0" text="Latitude" textAlignment="CENTER" textFill="WHITE">
+   <Label fx:id="latitudeText" alignment="CENTER" layoutX="154.0" layoutY="47.0" prefHeight="31.0" prefWidth="88.0" text="Latitude" textAlignment="CENTER" textFill="WHITE">
       <font>
          <Font name="Eras Bold ITC" size="19.0" />
       </font></Label>
-   <Label fx:id="longitudeText" alignment="CENTER" layoutX="145.0" layoutY="100.0" prefHeight="31.0" prefWidth="106.0" text="Longitude " textAlignment="CENTER" textFill="WHITE">
+   <Label fx:id="longitudeText" alignment="CENTER" layoutX="146.0" layoutY="105.0" prefHeight="31.0" prefWidth="106.0" text="Longitude " textAlignment="CENTER" textFill="WHITE">
       <font>
          <Font name="Eras Bold ITC" size="19.0" />
       </font></Label>
-    <TextField fx:id="cityInput" alignment="CENTER" focusTraversable="false" layoutX="141.0" layoutY="102.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="108.0" promptText="e.g. Gothenburg" />
-    <TextField fx:id="latitudeInput" alignment="CENTER" focusTraversable="false" layoutX="148.0" layoutY="73.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="98.0" promptText="-90 to 90" />
-    <TextField fx:id="longitudeInput" alignment="CENTER" focusTraversable="false" layoutX="148.0" layoutY="130.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="98.0" promptText="-180 to 180" />
-    <Label fx:id="output" alignment="CENTER" layoutX="31.0" layoutY="167.0" prefHeight="126.0" prefWidth="318.0" textAlignment="CENTER" wrapText="true">
+    <TextField fx:id="cityInput" alignment="CENTER" focusTraversable="false" layoutX="142.0" layoutY="107.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="108.0" promptText="e.g. Gothenburg" />
+    <TextField fx:id="latitudeInput" alignment="CENTER" focusTraversable="false" layoutX="149.0" layoutY="78.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="98.0" promptText="-90 to 90" />
+    <TextField fx:id="longitudeInput" alignment="CENTER" focusTraversable="false" layoutX="149.0" layoutY="135.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="98.0" promptText="-180 to 180" />
+    <Label fx:id="output" alignment="CENTER" layoutX="42.0" layoutY="167.0" prefHeight="126.0" prefWidth="224.0" textFill="WHITE" wrapText="true">
       <font>
-         <Font size="15.0" />
+         <Font name="Eras Bold ITC" size="15.0" />
       </font></Label>
     <Button fx:id="button" layoutX="144.0" layoutY="308.0" onAction="#onButtonClick" text="Get Weather">
       <font>
          <Font name="Eras Medium ITC" size="15.0" />
       </font></Button>
+   <ImageView fx:id="weatherIcon" fitHeight="66.0" fitWidth="88.0" layoutX="258.0" layoutY="197.0" pickOnBounds="true" preserveRatio="true" />
 </Pane>

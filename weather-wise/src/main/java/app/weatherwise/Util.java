@@ -44,4 +44,17 @@ public class Util {
         input = input.trim().replaceAll("[^a-zA-Z ]+", "");
         return input.replaceAll(" ", "%20");
     }
+
+    // returns the input as a double if it is of the double data type, and as a long if it is of the long data type.
+    public static String parseCoords(Object input) {
+        if (input instanceof Double) {
+            Double latValueDouble = (Double) input;
+            return String.valueOf(latValueDouble);
+        } else if (input instanceof Long) {
+            Long latValueLong = (Long) input;
+            return String.valueOf(latValueLong);
+        } else {
+            return null;
+        }
+    }
 }
