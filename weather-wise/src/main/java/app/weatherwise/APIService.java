@@ -1,7 +1,6 @@
 package app.weatherwise;
 
 // import toolkits to decode JSON
-import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
@@ -18,7 +17,7 @@ public class APIService {
 
     private static APIService instance;
 
-    public APIService() {
+    private APIService() {
     }
 
     // returns the single instance of the APIService class, creating one if none exists
@@ -57,12 +56,5 @@ public class APIService {
         String weatherInfo = makeHttpRequest(url);
         JSONParser parse = new JSONParser();
         return (JSONObject) parse.parse(weatherInfo);
-    }
-
-    // parse the response and returns as an equivalent JSONArray object
-    public JSONArray getJSONArray(String url) throws IOException, ParseException {
-        String weatherInfo = makeHttpRequest(url);
-        JSONParser parse = new JSONParser();
-        return (JSONArray) parse.parse(weatherInfo);
     }
 }
