@@ -46,7 +46,7 @@ public class Util {
     }
 
     // returns the input as a double if it is of the double data type, and as a long if it is of the long data type.
-    public static String parseCoords(Object input) {
+    public static String parseObject(Object input) {
         if (input instanceof Double) {
             Double latValueDouble = (Double) input;
             return String.valueOf(latValueDouble);

@@ -120,7 +120,7 @@ public class Controller {
             String country = sysObject.get("country") == null ? noData : (String) sysObject.get("country"); // get country from sys field
 
             mainObject = (JSONObject) weatherData.get("wind");
-            double windSpeed = (Double) mainObject.get("speed"); // get wind speed from wind field
+            String windSpeed = Util.parseObject(mainObject.get("speed")); // get wind speed from wind field
 
             country = Util.formatCC(country); // convert country code to country name
             String temp = Util.formatTemp(rawTemp); // convert Kelvin to Celsius
@@ -134,8 +134,8 @@ public class Controller {
                         + "Wind Speed: " + windSpeed + " m/s");
             } else {
                 JSONObject coordObject = (JSONObject) weatherData.get("coord");
-                String latitude = Util.parseCoords(coordObject.get("lat"));
-                String longitude = Util.parseCoords(coordObject.get("lon"));
+                String latitude = Util.parseObject(coordObject.get("lat"));
+                String longitude = Util.parseObject(coordObject.get("lon"));
                 output.setText("Latitude: " + latitude + "\n"
                         + "Longitude: " + longitude + "\n"
                         + "Forecast: " + description + "\n"
