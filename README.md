@@ -1,6 +1,7 @@
 <div align="center">
-    <img src="https://lh3.googleusercontent.com/drive-viewer/AFGJ81p9qalyCxg4J0rkG7P9SL3PPgQTzaU4vu0sk8zQfwDscGxYv-LuElE64n72p83rORn8PWSYjf2QUTKH6qZcNBgG6ABRNg=s1600" height="370px">
+    <img src="https://github.com/danielvdh24/weather-wise/assets/51958337/1eecefde-971a-4696-94da-9cd0cc6fbecb" height="370px">
 </div>
+
 
 A lightweight desktop application built with Maven and JavaFX, featuring the [OpenWeatherMap](https://openweathermap.org/) API integration. Weather Wise offers a simple way to get the current weather information for any location, allowing users to make informed decisions based on the latest weather updates.
 
